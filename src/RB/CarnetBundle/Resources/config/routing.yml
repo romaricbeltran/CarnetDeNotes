@@ -1,3 +1,7 @@
 rb_carnet_home:
     path:     /
     defaults: { _controller: RBCarnetBundle:Carnet:index }
+
+rb_carnet_ajout_eleve:
+    path:     /ajoutEleve
+    defaults: { _controller: RBCarnetBundle:Carnet:ajoutEleve }
