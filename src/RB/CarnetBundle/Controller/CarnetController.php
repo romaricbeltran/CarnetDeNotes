@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use RB\CarnetBundle\Form\AjoutEleveType;
 use RB\CarnetBundle\Form\ModifEleveType;
+use RB\CarnetBundle\Form\AjoutNoteType;
 use RB\CarnetBundle\Entity\Eleve;
 use RB\CarnetBundle\Entity\Note;
 
@@ -85,5 +86,28 @@ class CarnetController extends Controller
         'eleve' => $eleve,
         'form'   => $form->createView(),
       ));
+    }
+
+    public function ajoutNoteAction(Eleve $eleve, Request $request)
+    {
+        $note = new Note();
+
+        $note->setEleve($eleve);
+
+        $form  = $this->get('form.factory')->create(AjoutNoteType::class, $note);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($note);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Note enregistrée.');
+
+            return $this->redirectToRoute('rb_carnet_home');
+        }
+
+        return $this->render('RBCarnetBundle:Carnet:ajoutNote.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }

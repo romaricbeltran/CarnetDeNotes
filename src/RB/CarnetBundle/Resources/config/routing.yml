@@ -17,3 +17,9 @@ rb_carnet_supprime_eleve:
     defaults: { _controller: RBCarnetBundle:Carnet:supprimeEleve }
     requirements:
         id: \d+
+
+rb_carnet_ajout_note:
+    path:     /ajoutNote/{id}
+    defaults: { _controller: RBCarnetBundle:Carnet:ajoutNote }
+    requirements:
+        id: \d+
