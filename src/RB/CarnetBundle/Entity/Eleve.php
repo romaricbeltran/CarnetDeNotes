@@ -56,7 +56,7 @@ class Eleve
     private $nbNotes = 0;
 
     /**
-     * @var float|null
+     * @var float
      *
      * @ORM\Column(name="moyenne_generale", type="float", nullable=true)
      */
@@ -91,9 +91,10 @@ class Eleve
     /**
      * @ORM\PreUpdate
      */
-    public function updateDateModification()
+    public function update()
     {
         $this->setDateModification(new \Datetime());
+        $this->calculMoyenneGenerale();
     }
 
     public function increaseNote()
@@ -104,6 +105,23 @@ class Eleve
     public function decreaseNote()
     {
         $this->nbNotes--;
+    }
+
+    /* 
+     * Différent de setMoyenneGenerale puisque qu'on pourrait vouloir ajouter un point dans la moyenne indépendamment des notes.
+     * 
+     */
+    public function calculMoyenneGenerale()
+    {
+        $moyenne = 0;
+
+        foreach ($this->getNotes()->toArray() as $note)
+        {
+            $moyenne += $note->getChiffre();
+
+        }
+
+        $this->setMoyenneGenerale($moyenne / $this->getNbNotes());
     }
 
     /**
