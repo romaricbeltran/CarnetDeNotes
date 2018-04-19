@@ -1,0 +1,28 @@
+{# Ajouter un Eleve #}
+
+{% extends "CoreBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Modifier un élève</h2>
+
+  <p>
+    Etes-vous certain de vouloir supprimer l'élève "{{ eleve.prenom }} {{ eleve.nom }}" ?
+  </p>
+
+  <form action="{{ path('rb_carnet_supprime_eleve', {'id': eleve.id}) }}" method="post">
+    
+    <a href="{{ path('rb_carnet_home') }}">
+      Retour
+    </a>
+
+    <input type="submit" value="Supprimer" class="btn" />
+    
+    {# champ CSRF #}
+    {{ form_rest(form) }}
+
+  </form>
+
+
+
+{% endblock %}

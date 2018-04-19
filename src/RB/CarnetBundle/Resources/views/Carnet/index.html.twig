@@ -37,15 +37,17 @@
 
                          <td><a href="{{ path('rb_carnet_modif_eleve', {'id': eleve.id}) }}">
                             <img src="https://n6-img-fp.akamaized.net/icones-gratuites/modifier-bouton_318-99688.jpg?size=338&ext=jpg" alt="Modifier" height="30px"></a></td>
+                         <td><a href="{{ path('rb_carnet_supprime_eleve', {'id': eleve.id}) }}">
+                                <img src="https://n6-img-fp.akamaized.net/icones-gratuites/cross-fermer-ou-supprimer-circulaire-symbole-de-bouton-d-39-interface_318-70281.jpg?size=338&ext=jpg" alt="Supprimer" height="30px"></a></td>
 
-                        </tr> 
+                            </tr> 
 
-                    {% endfor %}
-                </tbody>
-            </table>
-            <a href="{{ path('rb_carnet_ajout_eleve') }}">Ajouter un Eleve</a>
-        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('rb_carnet_ajout_eleve') }}">Ajouter un Eleve</a>
+            </div>
 
 
 
-    {% endblock %}
+        {% endblock %}

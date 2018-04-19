@@ -11,3 +11,9 @@ rb_carnet_modif_eleve:
     defaults: { _controller: RBCarnetBundle:Carnet:modifEleve }
     requirements:
         id: \d+
+
+rb_carnet_supprime_eleve:
+    path:     /supprimeEleve/{id}
+    defaults: { _controller: RBCarnetBundle:Carnet:supprimeEleve }
+    requirements:
+        id: \d+

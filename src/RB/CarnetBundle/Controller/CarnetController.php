@@ -52,7 +52,7 @@ class CarnetController extends Controller
 
           $em = $this->getDoctrine()->getManager();
 
-          //on ne persiste pas l'annonce est déja en bdd
+          //on ne persiste pas l'eleve est déja en bdd
           $em->flush();
 
           $request->getSession()->getFlashBag()->add('notice', 'Eleve modifié.');
@@ -63,6 +63,27 @@ class CarnetController extends Controller
       return $this->render('RBCarnetBundle:Carnet:modifEleve.html.twig', array(
         'eleve' => $eleve,
         'form' => $form->createView(),
-    ));
-  }
+      ));
+    }
+
+    public function supprimeEleveAction(Eleve $eleve, Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->get('form.factory')->create();
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+          
+          $em->remove($eleve);
+          $em->flush();
+          $request->getSession()->getFlashBag()->add('info', "Eleve supprimé.");
+          return $this->redirectToRoute('rb_carnet_home');
+      }
+    
+      return $this->render('RBCarnetBundle:Carnet:supprimeEleve.html.twig', array(
+        'eleve' => $eleve,
+        'form'   => $form->createView(),
+      ));
+    }
 }
