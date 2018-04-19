@@ -45,7 +45,7 @@ class Eleve
     private $dateNaissance;
 
     /**
-     * @ORM\OneToMany(targetEntity="RB\CarnetBundle\Entity\Note", mappedBy="eleve")
+     * @ORM\OneToMany(targetEntity="RB\CarnetBundle\Entity\Note", mappedBy="eleve", cascade={"remove"})
      */
     private $notes;
 
