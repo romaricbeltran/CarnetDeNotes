@@ -113,15 +113,17 @@ class Eleve
      */
     public function calculMoyenneGenerale()
     {
-        $moyenne = 0;
+        if($this->getNbNotes() != 0) {
+            $moyenne = 0;
 
-        foreach ($this->getNotes()->toArray() as $note)
-        {
-            $moyenne += $note->getChiffre();
+            foreach ($this->getNotes()->toArray() as $note)
+            {
+                $moyenne += $note->getChiffre();
 
+            }
+
+            $this->setMoyenneGenerale($moyenne / $this->getNbNotes());
         }
-
-        $this->setMoyenneGenerale($moyenne / $this->getNbNotes());
     }
 
     /**
