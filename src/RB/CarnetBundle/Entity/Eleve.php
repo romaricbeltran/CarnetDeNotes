@@ -2,6 +2,7 @@
 
 namespace RB\CarnetBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="eleve")
  * @ORM\Entity(repositoryClass="RB\CarnetBundle\Repository\EleveRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Eleve
 {
@@ -43,6 +45,17 @@ class Eleve
     private $dateNaissance;
 
     /**
+     * @ORM\OneToMany(targetEntity="RB\CarnetBundle\Entity\Note", mappedBy="eleve")
+     */
+    private $notes;
+
+    /**
+     *
+     * @ORM\Column(name="nb_notes", type="integer")
+     */
+    private $nbNotes = 0;
+
+    /**
      * @var float|null
      *
      * @ORM\Column(name="moyenne_generale", type="float", nullable=true)
@@ -72,6 +85,25 @@ class Eleve
     public function __construct()
     {
         $this->dateCreation = new \Datetime();
+        $this->notes = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDateModification()
+    {
+        $this->setDateModification(new \Datetime());
+    }
+
+    public function increaseNote()
+    {
+        $this->nbNotes++;
+    }
+    
+    public function decreaseNote()
+    {
+        $this->nbNotes--;
     }
 
     /**
@@ -226,5 +258,65 @@ class Eleve
     public function getDateModification()
     {
         return $this->dateModification;
+    }
+
+    /**
+     * Set nbNotes.
+     *
+     * @param int $nbNotes
+     *
+     * @return Eleve
+     */
+    public function setNbNotes($nbNotes)
+    {
+        $this->nbNotes = $nbNotes;
+
+        return $this;
+    }
+
+    /**
+     * Get nbNotes.
+     *
+     * @return int
+     */
+    public function getNbNotes()
+    {
+        return $this->nbNotes;
+    }
+
+    /**
+     * Add note.
+     *
+     * @param \RB\CarnetBundle\Entity\Note $note
+     *
+     * @return Eleve
+     */
+    public function addNote(\RB\CarnetBundle\Entity\Note $note)
+    {
+        $this->notes[] = $note;
+
+        return $this;
+    }
+
+    /**
+     * Remove note.
+     *
+     * @param \RB\CarnetBundle\Entity\Note $note
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeNote(\RB\CarnetBundle\Entity\Note $note)
+    {
+        return $this->notes->removeElement($note);
+    }
+
+    /**
+     * Get notes.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotes()
+    {
+        return $this->notes;
     }
 }

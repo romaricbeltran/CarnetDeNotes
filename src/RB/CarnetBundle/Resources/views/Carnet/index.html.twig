@@ -21,6 +21,7 @@
                  <th>Nom</th>
                  <th>Prenom</th>
                  <th>Date de Naissance</th>
+                 <th>Notes</th>
              </tr>
          </thead>
 
@@ -30,6 +31,9 @@
                    <td>{{ eleve.nom }}</td>
                    <td>{{ eleve.prenom }}</td>
                    <td>{{ eleve.dateNaissance|date('d/m/Y') }}</td>
+           {% for note in listNotes %}
+                   <td>{{ note.matiere }}</td>
+           {% endfor %}
                </tr>
            {% endfor %}
        </tbody>

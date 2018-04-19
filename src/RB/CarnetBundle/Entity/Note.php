@@ -45,9 +45,51 @@ class Note
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_modification", type="datetime")
+     * @ORM\Column(name="date_modification", type="datetime", nullable=true)
      */
     private $dateModification;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="RB\CarnetBundle\Entity\Eleve", inversedBy="notes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $eleve;
+
+    /*
+     * Construct.
+     *
+     * 
+     * @iniitalise la date du jour
+     */
+    public function __construct()
+    {
+        $this->dateCreation = new \Datetime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDateModification()
+    {
+        $this->setDateModification(new \Datetime());
+    }
+
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function increase()
+    {
+        $this->getEleve()->increaseNote();
+    }
+
+    /**
+     * @ORM\PreRemove
+     */
+    public function decrease()
+    {
+        $this->getEleve()->decreaseNote();
+    }
 
 
     /**
@@ -154,5 +196,29 @@ class Note
     public function getDateModification()
     {
         return $this->dateModification;
+    }
+
+    /**
+     * Set eleve.
+     *
+     * @param \RB\CarnetBundle\Entity\Eleve $eleve
+     *
+     * @return Note
+     */
+    public function setEleve(\RB\CarnetBundle\Entity\Eleve $eleve)
+    {
+        $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    /**
+     * Get eleve.
+     *
+     * @return \RB\CarnetBundle\Entity\Eleve
+     */
+    public function getEleve()
+    {
+        return $this->eleve;
     }
 }
