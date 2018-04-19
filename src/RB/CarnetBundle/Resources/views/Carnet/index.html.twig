@@ -13,30 +13,39 @@
 {% block body %}
     <p>
 
+        {% for message in app.session.flashbag.get('notice') %}
+            {{ message }}
+        {% endfor %}
+
         <div class="column">
             <table>
                 <caption>Liste d'élèves</caption>
                 <thead> <!-- En-tête du tableau -->
-                 <tr>
-                     <th>Nom</th>
-                     <th>Prenom</th>
-                     <th>Date de Naissance</th>
-                 </tr>
-             </thead>
-
-             <tbody> <!-- Corps du tableau -->
-               {% for eleve in listEleves %}
                    <tr>
-                       <td>{{ eleve.nom }}</td>
-                       <td>{{ eleve.prenom }}</td>
-                       <td>{{ eleve.dateNaissance|date('d/m/Y') }}</td>
+                       <th>Nom</th>
+                       <th>Prenom</th>
+                       <th>Date de Naissance</th>
                    </tr>
-               {% endfor %}
-           </tbody>
-       </table>
-       <a href="{{ path('rb_carnet_ajout_eleve') }}">Ajouter un Eleve</a>
-   </div>
+               </thead>
+
+               <tbody> <!-- Corps du tableau -->
+                 {% for eleve in listEleves %}
+                     <tr>
+                         <td>{{ eleve.nom }}</td>
+                         <td>{{ eleve.prenom }}</td>
+                         <td>{{ eleve.dateNaissance|date('d/m/Y') }}</td>
+
+                         <td><a href="{{ path('rb_carnet_modif_eleve', {'id': eleve.id}) }}">
+                            <img src="https://n6-img-fp.akamaized.net/icones-gratuites/modifier-bouton_318-99688.jpg?size=338&ext=jpg" alt="Modifier" height="30px"></a></td>
+
+                        </tr> 
+
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('rb_carnet_ajout_eleve') }}">Ajouter un Eleve</a>
+        </div>
 
 
 
-{% endblock %}
+    {% endblock %}

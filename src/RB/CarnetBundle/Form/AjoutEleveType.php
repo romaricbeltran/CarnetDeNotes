@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
-class EleveType extends AbstractType
+class AjoutEleveType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,9 @@ class EleveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom')->add('prenom')->add('dateNaissance', DateType::Class, array('years' => range(date('Y')-100, date('Y'))))->add('ajouter', SubmitType::class);
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

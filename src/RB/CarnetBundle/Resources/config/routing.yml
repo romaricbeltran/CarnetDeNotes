@@ -5,3 +5,9 @@ rb_carnet_home:
 rb_carnet_ajout_eleve:
     path:     /ajoutEleve
     defaults: { _controller: RBCarnetBundle:Carnet:ajoutEleve }
+
+rb_carnet_modif_eleve:
+    path:     /modifEleve/{id}
+    defaults: { _controller: RBCarnetBundle:Carnet:modifEleve }
+    requirements:
+        id: \d+
