@@ -1,0 +1,3 @@
+rb_carnet_home:
+    path:     /
+    defaults: { _controller: RBCarnetBundle:Carnet:index }

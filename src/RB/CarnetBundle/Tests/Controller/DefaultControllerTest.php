@@ -1,10 +1,10 @@
 <?php
 
-namespace CoreBundle\Tests\Controller;
+namespace RB\CarnetBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CoreControllerTest extends WebTestCase
+class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
@@ -12,6 +12,6 @@ class CoreControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/');
 
-        $this->assertContains('Mon carnet', $client->getResponse()->getContent());
+        $this->assertContains('Hello World', $client->getResponse()->getContent());
     }
 }

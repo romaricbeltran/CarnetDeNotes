@@ -1,0 +1,49 @@
+{# Layout #}
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+        <title>{% block title %}Carnets de Notes{% endblock %}</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+          {% include 'CoreBundle:Outils:header.html.twig' %}
+
+    {% block stylesheets %}
+    
+  <!----------------------- CSS ---------------------->
+
+    {% endblock %}
+
+
+  </head>
+
+
+  <body>
+
+    {% block body %}
+
+  <!----------------------- BODY ---------------------->
+
+    {% endblock %}
+
+
+    {% block javascripts %}
+
+  <!----------------------- JAVASCRIPT ---------------------->  
+
+    {% endblock %}
+
+  </body>
+
+  <footer>
+
+  {% include 'CoreBundle:Outils:footer.html.twig' %}
+
+
+  </footer>
+
+</html>

@@ -1,0 +1,4 @@
+services:
+#    rb_carnet.example:
+#        class: RB\CarnetBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
