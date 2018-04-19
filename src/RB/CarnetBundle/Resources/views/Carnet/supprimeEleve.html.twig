@@ -12,11 +12,11 @@
 
   <form action="{{ path('rb_carnet_supprime_eleve', {'id': eleve.id}) }}" method="post">
     
-    <a href="{{ path('rb_carnet_home') }}">
+    <a href="{{ path('rb_carnet_home') }}" class="bouton">
       Retour
     </a>
 
-    <input type="submit" value="Supprimer" class="btn" />
+    <input type="submit" value="Supprimer" class="bouton" />
     
     {# champ CSRF #}
     {{ form_rest(form) }}

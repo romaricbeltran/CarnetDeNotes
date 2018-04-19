@@ -19,7 +19,7 @@
 
         <div class="column">
             <table>
-                <caption>Liste d'élèves</caption>
+                <caption><h1>Mon Carnet De Notes</h1></caption>
                 <thead> <!-- En-tête du tableau -->
                    <tr>
                        <th>Nom</th>
@@ -27,32 +27,31 @@
                        <th>Date de Naissance</th>
                        <th>Moyenne Generale</th>
                    </tr>
-               </thead>
+                </thead>
 
-               <tbody> <!-- Corps du tableau -->
+                <tbody> <!-- Corps du tableau -->
+
                  {% for eleve in listEleves %}
-                     <tr>
-                         <td>{{ eleve.nom }}</td>
-                         <td>{{ eleve.prenom }}</td>
-                         <td>{{ eleve.dateNaissance|date('d/m/Y') }}</td>
-                         <td>{{ eleve.moyenneGenerale }}</td>
+                    <tr>
+                       <td>{{ eleve.nom }}</td>
+                       <td>{{ eleve.prenom }}</td>
+                       <td>{{ eleve.dateNaissance|date('d/m/Y') }}</td>
+                       <td>{{ eleve.moyenneGenerale }}</td>
 
-                         <td><a href="{{ path('rb_carnet_ajout_note', {'id': eleve.id}) }}">
-                                <img src="http://www.vaditercume.com/wp-content/uploads/2016/08/noter-tasdi%C4%9Fi3-300x296.png" alt="Noter" height="30px"></a></td>
+                       <td><a href="{{ path('rb_carnet_ajout_note', {'id': eleve.id}) }}">
+                            <img src="http://www.vaditercume.com/wp-content/uploads/2016/08/noter-tasdi%C4%9Fi3-300x296.png" alt="Noter" height="30px"></a></td>
 
-                         <td><a href="{{ path('rb_carnet_modif_eleve', {'id': eleve.id}) }}">
+                       <td><a href="{{ path('rb_carnet_modif_eleve', {'id': eleve.id}) }}">
                             <img src="https://n6-img-fp.akamaized.net/icones-gratuites/modifier-bouton_318-99688.jpg?size=338&ext=jpg" alt="Modifier" height="30px"></a></td>
 
-                         <td><a href="{{ path('rb_carnet_supprime_eleve', {'id': eleve.id}) }}">
-                                <img src="https://n6-img-fp.akamaized.net/icones-gratuites/cross-fermer-ou-supprimer-circulaire-symbole-de-bouton-d-39-interface_318-70281.jpg?size=338&ext=jpg" alt="Supprimer" height="30px"></a></td>
-
-                            </tr> 
-
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <a href="{{ path('rb_carnet_ajout_eleve') }}">Ajouter un Eleve</a>
-            </div>
+                       <td><a href="{{ path('rb_carnet_supprime_eleve', {'id': eleve.id}) }}">
+                            <img src="https://n6-img-fp.akamaized.net/icones-gratuites/cross-fermer-ou-supprimer-circulaire-symbole-de-bouton-d-39-interface_318-70281.jpg?size=338&ext=jpg" alt="Supprimer" height="30px"></a></td>
+                    </tr> 
+                 {% endfor %}
+                </tbody>    
+            </table>
+            <a href="{{ path('rb_carnet_ajout_eleve') }}" class="bouton">Ajouter un Eleve</a>
+        </div>
 
 
 

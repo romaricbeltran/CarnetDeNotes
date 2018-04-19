@@ -5,9 +5,21 @@
 
 {% block body %}
 
-<p>
+    <p>
+        Voici la mini application web Symfony 3 que je viens de produire.
 
-<a href="{{path ('rb_carnet_home')}}" class="bouton">Accèder à Carnet de Notes</a>
+        On peut : <br><br>
+        - ajouter/modifier/supprimer des élèves de la liste
+        <br>
+        - attribuer des notes aux élèves et voir la moyenne générale de chacun
+        <br><br>
+        En accédant à la base de données, on remarque : <br><br>
+        - la relation OneToMany entre Eleve et Note
+        <br>
+        - les dates de créations/modifications qui se mettent à jour
+    </p>
+
+    <a href="{{path ('rb_carnet_home')}}" class="bouton">Accèder à Carnet de Notes</a>
 
     
 
